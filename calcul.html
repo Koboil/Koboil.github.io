@@ -7,29 +7,34 @@
     <title>Document</title>
     <link rel="import" href="/components/header.html"></link>
     <link rel="stylesheet" type="text/css" href="style/calc.css" /> 
+   
 </head>
 <body>
+    <h1><span id="resultat"><script>resultat.innerHTML</script></span></h1>
+    <h2 id="equationUser"></h2>
+    <script>  </script>
 <div class="calculatrice">
     <div class="number">
-        <div class="button1">1</div>
-        <div class="button2">2</div>
-        <div class="button3">3</div>
-        <div class="button4">4</div>
-        <div class="button5">5</div>
-        <div class="button6">6</div>
-        <div class="button7">7</div>
-        <div class="button8">8</div>
-        <div class="button9">9</div>
-        <div class="button0">0</div>
+        <div onclick="ajoutEquation(1)" class="button1">1</div>
+        <div onclick="ajoutEquation(2)" class="button2">2</div>
+        <div onclick="ajoutEquation(3)" class="button3">3</div>
+        <div onclick="ajoutEquation(4)" class="button4">4</div>
+        <div onclick="ajoutEquation(5)" class="button5">5</div>
+        <div onclick="ajoutEquation(6)" class="button6">6</div>
+        <div onclick="ajoutEquation(7)" class="button7">7</div>
+        <div onclick="ajoutEquation(8)" class="button8">8</div>
+        <div onclick="ajoutEquation(9)" class="button9">9</div>
+        <div onclick="ajoutEquation(0)" class="button0">0</div>
     </div>
     <div class="operator">
-        <div class="buttonDiv">/</div>
-        <div class="buttonMul">x</div>
-        <div class="buttonAdd">+</div>
-        <div class="buttonSous">-</div>
-        <div class="buttonPosNeg">| x |</div>
+        <div onclick="ajoutEquation('/')" class="buttonDiv">/</div>
+        <div onclick="ajoutEquation('*')" class="buttonMul">x</div>
+        <div onclick="ajoutEquation('+')" class="buttonAdd">+</div>
+        <div onclick="ajoutEquation('-')" class="buttonSous">-</div>
+        <div onclick="ajoutEquation('posNeg')" class="buttonPosNeg">| x |</div>
     </div>
-    <div class="valider">=</div>
+    <div onclick="resultatFinal()" class="valider">=</div>
 </div>
+<script src="js/app.js"></script>
 </body>
 </html>
