@@ -2,17 +2,17 @@
 const zeroAbs = 0;
 let equation =  new Array(); 
 let equationBis = new Array();
+let equationUtilisateur = document.getElementById("equationUser"); 
+equationUtilisateur.innerHTML = '';
 let temp = ''; 
 let resultat = 0;
+let affiche; 
+affiche = document.getElementById("resultat");
+affiche.innerHTML = resultat;
+//let historique = new Array();
 
 
-
-//TODO
-let affichageEquation = document.getElementById("affichageEquation");
-
-function afficheResultat() {
-    document.write(resultat)
-}
+//TODO 
 /*
 function afficheEquation() {
     if (equation.length == 0) {
@@ -33,6 +33,7 @@ function ajoutEquation(x) {
     equation.push(x);
     //TEST (A SUPPRIMER UNE FOIS FINI !)
     console.log(equation);
+    equationUtilisateur.innerHTML += x;
 }
 
 function resultatFinal() {
@@ -118,4 +119,6 @@ function resultatFinal() {
         resultat = equationBis[0];
 
     }
+    //historique.push(equationUtilisateur.innerHTML);
+    affiche.innerHTML = resultat;
 }
