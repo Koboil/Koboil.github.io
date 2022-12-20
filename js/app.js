@@ -2,27 +2,15 @@
 const zeroAbs = 0;
 let equation =  new Array(); 
 let equationBis = new Array();
-let equationUtilisateur = document.getElementById("equationUser"); 
-equationUtilisateur.innerHTML = '';
 let temp = ''; 
 let resultat = 0;
-let affiche; 
-affiche = document.getElementById("resultat");
+let affiche = document.getElementById("resultat");
+const histoResult= document.getElementById("histoResult");
+const equationUtilisateur = document.getElementById("equationUtilisateur"); 
 affiche.innerHTML = resultat;
-//let historique = new Array();
+const afficheEqua = document.getElementById("afficheEqua")
+let resultGros
 
-
-//TODO 
-/*
-function afficheEquation() {
-    if (equation.length == 0) {
-        document.getElementById(equation).innerHTML
-    }
-    else{
-        document.getElementById(equation).innerHTML =     
-    }
-}
-*/
 
 
 
@@ -33,7 +21,7 @@ function ajoutEquation(x) {
     equation.push(x);
     //TEST (A SUPPRIMER UNE FOIS FINI !)
     console.log(equation);
-    equationUtilisateur.innerHTML += x;
+    afficheEqua.innerHTML += x;
 }
 
 function resultatFinal() {
@@ -59,9 +47,11 @@ function resultatFinal() {
     let numb = Number(temp);
     equationBis.push(numb);
     console.log(equationBis)
+    
 
     for (const element of equationBis) {
-        /*
+        
+       /*
         *
         * On gère l'ordre des priorité comme suit 
         *  
@@ -119,6 +109,19 @@ function resultatFinal() {
         resultat = equationBis[0];
 
     }
-    //historique.push(equationUtilisateur.innerHTML);
-    affiche.innerHTML = resultat;
+
+    //Je stock le résultat de mon opération dans une variable qui ne change que quand l'utilisateur fait égal et pas avant.
+    resultGros = resultat;
+
+    let tempo = equation.join('');
+    equationUtilisateur.innerHTML = tempo; 
+    histoResult.innerHTML = ' = '+resultGros;
+    affiche.innerHTML = resultGros;
+    
+    afficheEqua.innerHTML = ''; 
+    equation =  new Array(); 
+    equationBis = new Array();
+    temp = ''; 
+    resultat = 0;
+    affiche = document.getElementById("resultat");
 }
