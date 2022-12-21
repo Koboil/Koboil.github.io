@@ -23,12 +23,14 @@ function ajoutEquation(x) {
     equation.push(x);
     //TEST (A SUPPRIMER UNE FOIS FINI !)
     console.log(equation);
+
     if (afficheEqua.innerHTML == 0) {
         afficheEqua.innerHTML = x; 
     }
     else {
         afficheEqua.innerHTML += x;
     }
+    
 }
 
 function resultatFinal() {
@@ -42,24 +44,23 @@ function resultatFinal() {
             
             //Une fois le nombre complet créé on le save dans notre second array
             equationBis.push(numb);
-            
+
             //On save ensuite notre opérateur à la suite de notre nombre
             equationBis.push(element);
-            
 
             //On reset notre variable nombre pour save le prochain
             temp= '';
         }
         else{
-            //On concataine notre nombre jusqu'au prochain opérateur
-            temp= temp + element
+            //On concataine notre nombre jusqu'au prochain opérateur 
+            //(le '' permet de ne pas additionner mais de concatainer)
+            temp= temp +''+ element
         }
     }
-
+    
     let numb = Number(temp);
     equationBis.push(numb);
-    console.log(equationBis)
-    
+    console.log(equationBis);
     //calcul de l'opération de l'utilisateur
     for (const element of equationBis) {
         
@@ -73,10 +74,10 @@ function resultatFinal() {
         * et enfin Soustraction
         * 
         */
-
+        
         //Division
         while(equationBis.includes('/')) { //On regarde si notre équation comporte une division
-
+            
             //On récupère l'emplacement de la division
             const divIndex = equationBis.indexOf('/'); 
             
@@ -105,13 +106,13 @@ function resultatFinal() {
         }
 
         //Addition
-        while(equationBis.includes('+')) {
-            const addIndex = equationBis.indexOf('+'); 
+        while(equationBis.includes('+')) {      
+            const addIndex = equationBis.indexOf('+');            
             const number1 = equationBis[addIndex-1];
-            const number2 = equationBis[addIndex+1];
-            const result = number1+number2;
-            equationBis[addIndex-1]= result;
-            equationBis.splice(addIndex, 2);
+            const number2 = equationBis[addIndex+1];           
+            const result = number1+number2;           
+            equationBis[addIndex-1]= result;           
+            equationBis.splice(addIndex, 2);            
         }
 
         //Soustraction
@@ -135,14 +136,14 @@ function resultatFinal() {
     equationUtilisateur.innerHTML = equation.join(''); 
     histoResult.innerHTML = ' = '+resultat;
     affiche.innerHTML = resultat;
+   
 
     //reset des variable permettant à l'utilisateur de continuer ses calculs sans avoir à refresh ses opérations
     resultat = 0; 
     equation =  new Array(); 
-    console.log(equationBis)
+    console.log(equationBis);
     equationBis = new Array();
     afficheEqua.innerHTML = 0;
-    
-    
+    temp = 0;
 
 }
