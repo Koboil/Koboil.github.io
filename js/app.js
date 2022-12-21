@@ -23,6 +23,7 @@ function ajoutEquation(x) {
     equation.push(x);
     //TEST (A SUPPRIMER UNE FOIS FINI !)
     console.log(equation);
+
     if (afficheEqua.innerHTML == 0) {
         afficheEqua.innerHTML = x; 
     }
@@ -32,6 +33,7 @@ function ajoutEquation(x) {
 }
 
 function resultatFinal() {
+    temp = 0;
     //Ici on va transformer notre array en une équation plus facilement interprétable
     for (const element of equation) {
         //On vérifie que l'élément qu'on parcourt n'est pas un chiffre
@@ -55,7 +57,7 @@ function resultatFinal() {
             temp= temp + element
         }
     }
-
+    
     let numb = Number(temp);
     equationBis.push(numb);
     console.log(equationBis)
@@ -73,7 +75,7 @@ function resultatFinal() {
         * et enfin Soustraction
         * 
         */
-
+        
         //Division
         while(equationBis.includes('/')) { //On regarde si notre équation comporte une division
 
@@ -135,14 +137,12 @@ function resultatFinal() {
     equationUtilisateur.innerHTML = equation.join(''); 
     histoResult.innerHTML = ' = '+resultat;
     affiche.innerHTML = resultat;
-
+    
     //reset des variable permettant à l'utilisateur de continuer ses calculs sans avoir à refresh ses opérations
     resultat = 0; 
     equation =  new Array(); 
     console.log(equationBis)
     equationBis = new Array();
     afficheEqua.innerHTML = 0;
-    
-    
 
 }
