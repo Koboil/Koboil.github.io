@@ -8,8 +8,9 @@ let affiche = document.getElementById("resultat");
 const histoResult= document.getElementById("histoResult");
 const equationUtilisateur = document.getElementById("equationUtilisateur"); 
 affiche.innerHTML = resultat;
-const afficheEqua = document.getElementById("afficheEqua")
-let resultGros
+const afficheEqua = document.getElementById("afficheEqua");
+afficheEqua.innerHTML = 0;
+let affichageResultat;
 
 
 
@@ -17,11 +18,17 @@ let resultGros
 
 //On stock l'entrée de l'utilisateur dans un array nommé "equation"
 function ajoutEquation(x) {
+    affiche.innerHTML = 0;
     //On sauvegarde nos éléments dans l'Array
     equation.push(x);
     //TEST (A SUPPRIMER UNE FOIS FINI !)
     console.log(equation);
-    afficheEqua.innerHTML += x;
+    if (afficheEqua.innerHTML == 0) {
+        afficheEqua.innerHTML = x; 
+    }
+    else {
+        afficheEqua.innerHTML += x;
+    }
 }
 
 function resultatFinal() {
@@ -29,12 +36,17 @@ function resultatFinal() {
     for (const element of equation) {
         //On vérifie que l'élément qu'on parcourt n'est pas un chiffre
         if(isNaN(element)) { 
+            
             //Si c'est le cas, on s'arrête de concatainer notre nombre car ce dernier est désormais complet
             let numb = Number(temp);
+            
             //Une fois le nombre complet créé on le save dans notre second array
             equationBis.push(numb);
+            
             //On save ensuite notre opérateur à la suite de notre nombre
             equationBis.push(element);
+            
+
             //On reset notre variable nombre pour save le prochain
             temp= '';
         }
@@ -48,7 +60,7 @@ function resultatFinal() {
     equationBis.push(numb);
     console.log(equationBis)
     
-
+    //calcul de l'opération de l'utilisateur
     for (const element of equationBis) {
         
        /*
@@ -56,23 +68,28 @@ function resultatFinal() {
         * On gère l'ordre des priorité comme suit 
         *  
         * Division
-        * Multiplication
-        * Addition
-        * Soustraction
+        * puis Multiplication
+        * puis Addition
+        * et enfin Soustraction
         * 
         */
 
         //Division
         while(equationBis.includes('/')) { //On regarde si notre équation comporte une division
+
             //On récupère l'emplacement de la division
             const divIndex = equationBis.indexOf('/'); 
+            
             //On assigne les deux valeurs que l'on va traiter 
             const number1 = equationBis[divIndex-1];
             const number2 = equationBis[divIndex+1];
+            
             //On stock le résultat dans une constante
             const result = number1/number2;
+            
             //On remplace le premier élément par le résultat
             equationBis[divIndex-1]= result;
+            
             //On supprime les deux autres éléments désormais inutiles puisqu'ils ont étaient traités 
             equationBis.splice(divIndex, 2);
         }
@@ -107,21 +124,25 @@ function resultatFinal() {
             equationBis.splice(subIndex, 2);
         }
         resultat = equationBis[0];
+        
+        
+        
 
     }
 
-    //Je stock le résultat de mon opération dans une variable qui ne change que quand l'utilisateur fait égal et pas avant.
-    resultGros = resultat;
+    //    
 
-    let tempo = equation.join('');
-    equationUtilisateur.innerHTML = tempo; 
-    histoResult.innerHTML = ' = '+resultGros;
-    affiche.innerHTML = resultGros;
-    
-    afficheEqua.innerHTML = ''; 
+    equationUtilisateur.innerHTML = equation.join(''); 
+    histoResult.innerHTML = ' = '+resultat;
+    affiche.innerHTML = resultat;
+
+    //reset des variable permettant à l'utilisateur de continuer ses calculs sans avoir à refresh ses opérations
+    resultat = 0; 
     equation =  new Array(); 
+    console.log(equationBis)
     equationBis = new Array();
-    temp = ''; 
-    resultat = 0;
-    affiche = document.getElementById("resultat");
+    afficheEqua.innerHTML = 0;
+    
+    
+
 }
