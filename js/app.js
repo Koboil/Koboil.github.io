@@ -1,149 +1,122 @@
 //Calculatrice
-const zeroAbs = 0;
-let equation =  new Array(); 
-let equationBis = new Array();
-let temp = ''; 
-let resultat = 0;
-let affiche = document.getElementById("resultat");
-const histoResult= document.getElementById("histoResult");
-const equationUtilisateur = document.getElementById("equationUtilisateur"); 
-affiche.innerHTML = resultat;
+const histoResult = document.getElementById("histoResult");
 const afficheEqua = document.getElementById("afficheEqua");
+const affiche = document.getElementById("resultat");
+affiche.innerHTML = 0;
 afficheEqua.innerHTML = 0;
-let affichageResultat;
+let eqString = "";
+isCalculDone = false;
 
-
-
-
-
-//On stock l'entrée de l'utilisateur dans un array nommé "equation"
-function ajoutEquation(x) {
-    affiche.innerHTML = 0;
-    //On sauvegarde nos éléments dans l'Array
-    equation.push(x);
-    //TEST (A SUPPRIMER UNE FOIS FINI !)
-    console.log(equation);
-
-    if (afficheEqua.innerHTML == 0) {
-        afficheEqua.innerHTML = x; 
-    }
-    else {
-        afficheEqua.innerHTML += x;
-    }
-    
+//On stocke l'entrée de l'utilisateur dans une string nommé "equation"
+function ajoutEquation(input) {
+  // Petit truc stylé ici : Si on rappuie sur les touches, on reset automatiquement les inputs qui nous servent plus :D
+  if (eqString.length > 0 && isCalculDone) {
+    resetVariables();
+  }
+  eqString = retireDoublonSigne(eqString + input.toString());
+  afficheEqua.innerHTML = eqString;
 }
 
+// on convertit ensuite notre string toute fraîche, en tableau d'instructions pour les opérations de la calculette
+function conversionStringToArray(inputString) {
+  let temp = "";
+  const regex = /[-+*\/]/;
+  const result = [];
+  // note ici : On a transformé notre string en tableau, en gros ça resemble à  :
+  // "12+13" qui va devenir => ["1", "2", "+", "1", "3"].
+  [...inputString].forEach((character) => {
+    // Si on a un signe, alors ...
+    if (regex.test(character)) {
+      // ça veut dire que notre nombre est complet, donc on le pousse dans notre tableau
+      result.push(Number(temp));
+      // on vide la valeur temporaire, et on pousse par la suite, le fameux signe !
+      (temp = ""), result.push(character);
+    } else {
+      // Sinon... On ajoute notre "chiffre" à notre nombre en construction dans la variable temporaire !
+      temp = temp + character;
+    }
+  });
+
+  result.push(Number(temp));
+  return result;
+}
+
+// on check si il n'y a pas de doublon de signe, genre +- collés :)
+function retireDoublonSigne(input) {
+  const regex = /[-+*\/]{2}/;
+  // ce cas sert à éviter que l'on puisse mettre des signes avant les chiffres
+  if (regex.test(input) && eqString.length === 1) {
+    return "";
+  }
+  if (regex.test(input)) {
+    return (input = input.substring(0, input.length - 1));
+  }
+  return input;
+}
+
+// On recherche en premier lieu, les priorités opératoire hautes, mais si il y en a pas, on cherche les plus basses :)
+function searchPrioritySign(instructions) {
+  highPrioSign = instructions.findIndex((x) => x === "/" || x === "*");
+  // Si on trouve rien (d'ou le -1)
+  if (highPrioSign === -1) {
+    return instructions.findIndex((x) => x === "+" || x === "-");
+  }
+  return highPrioSign;
+}
+
+// l'objectif ici, c'est de pouvoir calculer les valeurs qui sont de part et d'autre d'un signe
+// et ce pour toutes les valeurs du tableau
+function reduceValue(instructions) {
+  while (instructions.length !== 1) {
+    let result = 0;
+    // on recherche le signe avec la plus haute priorité opératoire :).
+    const signIndex = searchPrioritySign(instructions);
+    // Si ya un signe dans le tableau d'instructions... (sinon on ne fait rien :3)
+    if (signIndex !== -1) {
+      // ... on sélectionne le bon opérateur, puis on fait l'opération en elle même.
+      switch (instructions[signIndex]) {
+        case "/":
+          result = instructions[signIndex - 1] / instructions[signIndex + 1];
+          break;
+        case "*":
+          result = instructions[signIndex - 1] * instructions[signIndex + 1];
+          break;
+        case "+":
+          result = instructions[signIndex - 1] + instructions[signIndex + 1];
+          break;
+        case "-":
+          result = instructions[signIndex - 1] - instructions[signIndex + 1];
+          break;
+      }
+      // Une fois ceci fait, on retire les valeurs devenues inutiles, et on les remplace par le résultat
+      instructions.splice(signIndex - 1, 3, result);
+    }
+  }
+  // Puis on retourne notre valeur, une fois le traitement terminé :)
+  return instructions[0];
+}
+
+// l'assemblage des fonctions de traitement se fait ici, car c'est le déclencheur du traitement du résultat.
 function resultatFinal() {
-    //Ici on va transformer notre array en une équation plus facilement interprétable
-    for (const element of equation) {
-        //On vérifie que l'élément qu'on parcourt n'est pas un chiffre
-        if(isNaN(element)) { 
-            
-            //Si c'est le cas, on s'arrête de concatainer notre nombre car ce dernier est désormais complet
-            let numb = Number(temp);
-            
-            //Une fois le nombre complet créé on le save dans notre second array
-            equationBis.push(numb);
+  // On transforme notre string, représentant la valeur fournie par l'utilisateur, en tableau d'instructions
+  const instructions = conversionStringToArray(eqString);
+  // on fait une à une les diverses opérations décrites dans le tableau.
+  const result = reduceValue(instructions);
+  histoResult.innerHTML = addHistory(histoResult.innerHTML, eqString, result);
+  affiche.innerHTML = result;
+  isCalculDone = true;
+}
 
-            //On save ensuite notre opérateur à la suite de notre nombre
-            equationBis.push(element);
+// on récupère les données précédentes, puis on les ajoute dans les nouvelles,
+// NOTE, bien sûr quand le front sera plus développé, il faudra pas hésiter à mettre l'historique dans un tableau :D
+function addHistory(previousData, entry, result) {
+  return `${previousData} ${entry} = ${result} <br>`;
+}
 
-            //On reset notre variable nombre pour save le prochain
-            temp= '';
-        }
-        else{
-            //On concataine notre nombre jusqu'au prochain opérateur 
-            //(le '' permet de ne pas additionner mais de concatainer)
-            temp= temp +''+ element
-        }
-    }
-    
-    let numb = Number(temp);
-    equationBis.push(numb);
-    console.log(equationBis);
-    //calcul de l'opération de l'utilisateur
-    for (const element of equationBis) {
-        
-       /*
-        *
-        * On gère l'ordre des priorité comme suit 
-        *  
-        * Division
-        * puis Multiplication
-        * puis Addition
-        * et enfin Soustraction
-        * 
-        */
-        
-        //Division
-        while(equationBis.includes('/')) { //On regarde si notre équation comporte une division
-            
-            //On récupère l'emplacement de la division
-            const divIndex = equationBis.indexOf('/'); 
-            
-            //On assigne les deux valeurs que l'on va traiter 
-            const number1 = equationBis[divIndex-1];
-            const number2 = equationBis[divIndex+1];
-            
-            //On stock le résultat dans une constante
-            const result = number1/number2;
-            
-            //On remplace le premier élément par le résultat
-            equationBis[divIndex-1]= result;
-            
-            //On supprime les deux autres éléments désormais inutiles puisqu'ils ont étaient traités 
-            equationBis.splice(divIndex, 2);
-        }
-
-        //Multiplication
-        while(equationBis.includes('*')) {
-            const mulIndex = equationBis.indexOf('*'); 
-            const number1 = equationBis[mulIndex-1];
-            const number2 = equationBis[mulIndex+1];
-            const result = number1*number2;
-            equationBis[mulIndex-1]= result;
-            equationBis.splice(mulIndex, 2);
-        }
-
-        //Addition
-        while(equationBis.includes('+')) {      
-            const addIndex = equationBis.indexOf('+');            
-            const number1 = equationBis[addIndex-1];
-            const number2 = equationBis[addIndex+1];           
-            const result = number1+number2;           
-            equationBis[addIndex-1]= result;           
-            equationBis.splice(addIndex, 2);            
-        }
-
-        //Soustraction
-        while(equationBis.includes('-')) {
-            const subIndex = equationBis.indexOf('-'); 
-            const number1 = equationBis[subIndex-1];
-            const number2 = equationBis[subIndex+1];
-            const result = number1-number2;
-            equationBis[subIndex-1]= result;
-            equationBis.splice(subIndex, 2);
-        }
-        resultat = equationBis[0];
-        
-        
-        
-
-    }
-
-    //    
-
-    equationUtilisateur.innerHTML = equation.join(''); 
-    histoResult.innerHTML = ' = '+resultat;
-    affiche.innerHTML = resultat;
-   
-
-    //reset des variable permettant à l'utilisateur de continuer ses calculs sans avoir à refresh ses opérations
-    resultat = 0; 
-    equation =  new Array(); 
-    console.log(equationBis);
-    equationBis = new Array();
-    afficheEqua.innerHTML = 0;
-    temp = 0;
-
+// Permet de reset les variable à 0
+function resetVariables() {
+  eqString = "";
+  affiche.innerHTML = 0;
+  afficheEqua.innerHTML = 0;
+  isCalculDone = false;
 }
