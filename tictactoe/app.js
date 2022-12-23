@@ -67,16 +67,15 @@ const verifiedVictory = () => {
     }
 };
 
-const PlayCase = j => {
-    let idCase = j.target.id;
+const PlayCase = notreCase => {
+    let idCase = notreCase.target.id;
     if (state[idCase] != 0) return;
     state[idCase] = state.joueurEnCours
-    partieEnCours(j);    
+    partieEnCours(notreCase);    
 };
 
-function partieEnCours(j) {
+function partieEnCours(notreCase) {
     let isVictory = verifiedVictory();
-
     if(isVictory) {
         alert("Le gagnant est le joueur "+state.joueurEnCours);
         if(state.joueurEnCours===1) {
@@ -99,16 +98,7 @@ function partieEnCours(j) {
         cases.forEach(item => (item.textContent= ""));
     }
     else if (isVictory === false){
-        if(state.joueurEnCours===1){
-            j.target.textContent = "X";
-            state.joueurEnCours = 2; 
-            joueur.textContent = "2";
-        }
-        else {
-            j.target.textContent = "O";
-            state.joueurEnCours = 1; 
-            joueur.textContent = "1";
-        }
+        rondOuCroix(notreCase);
     }
 }
 
@@ -116,3 +106,16 @@ cases.forEach(item => {
     item.addEventListener("click", PlayCase);
 });
 
+function rondOuCroix(notreCase){
+    if(state.joueurEnCours===1){
+        notreCase.target.textContent = "X";
+        state.joueurEnCours = 2; 
+        joueur.textContent = "2";
+    }
+    else {
+        notreCase.target.textContent = "O";
+        state.joueurEnCours = 1; 
+        joueur.textContent = "1";
+    }
+
+}
