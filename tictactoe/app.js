@@ -70,9 +70,11 @@ const verifiedVictory = () => {
 const PlayCase = j => {
     let idCase = j.target.id;
     if (state[idCase] != 0) return;
-    
     state[idCase] = state.joueurEnCours
+    partieEnCours(j);    
+};
 
+function partieEnCours(j) {
     let isVictory = verifiedVictory();
 
     if(isVictory) {
@@ -108,8 +110,7 @@ const PlayCase = j => {
             joueur.textContent = "1";
         }
     }
-};
-
+}
 
 cases.forEach(item => {
     item.addEventListener("click", PlayCase);
