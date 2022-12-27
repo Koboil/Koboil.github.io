@@ -46,6 +46,7 @@ function timer() {
 
 
 
+
 startB.addEventListener('click', (event) => {
     timer();
     disableButton(startB);
