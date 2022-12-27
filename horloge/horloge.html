@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chrono.css" />
+    <link rel="stylesheet" href="horloge.css" />
+    <link rel="stylesheet" href="minuterie.css" />
+    <title>Horloge</title>
+</head>
+<body>
+    
+    <div id="time"></div>
+    <br><br>
+    <h1><time>00:00:00</time></h1>
+    <button id="strt">start</button>
+    <button id="stp" disabled>stop</button> <!-- corrigé bug reset MS-->
+    <button id="rst" disabled>reset</button>
+    <br><br>
+    <button id="boutonMinuterie" class="boutton">(Re)Lancer la minuterie</button>
+    <div id="minuterie"></div>
+    
+
+<script src="minuterie.js"></script>
+<script src="chrono.js"></script>
+<script src="horloge.js"></script>
+</body>
+</html>
