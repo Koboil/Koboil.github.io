@@ -1,0 +1,1 @@
+console.log("A script that return battery status of the phone");
