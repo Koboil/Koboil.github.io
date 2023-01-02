@@ -1,31 +1,31 @@
 ---
 name: Pull request
-about: Create a pull request to merge your changes
+about: Creation d'une pull request 
 ---
 
 ## Description
 
-Please describe the changes and improvements made by this pull request. 
+Veuillez décrire les changements et améliorations apportés par cette demande de tirage.
 
 ## Motivation
 
-Why are these changes necessary? What problem do they solve? 
+Pourquoi ces changements sont-ils nécessaires ? Que résolvent-ils ?
 
-## Changes Made
+## Changements apportés
 
-- List the specific changes made in this pull request.
-- Include relevant details and context.
+- Liste des changements spécifiques apportés dans cette demande de tirage.
+- Inclure des détails et contexte pertinents.
 
-## Screenshots
+## Captures d'écran
 
-If applicable, please include before and after screenshots to demonstrate the changes made.
+Si applicable, veuillez inclure des captures d'écran avant et après pour démontrer les changements apportés.
 
-## Test Plan
+## Plan de test
 
-Please describe how you tested these changes. Include details on:
-- The testing environment (OS, browser, etc.)
-- The testing process (manual testing, automated testing, etc.)
+Veuillez décrire comment vous avez testé ces changements. Inclure des détails sur :
+- L'environnement de test (OS, navigateur, etc.)
+- Le processus de test (test manuel, test automatisé, etc.)
 
-## Open Questions
+## Questions ouvertes
 
-Are there any open questions or things that are not yet fully resolved by this pull request?
+Y a-t-il des questions ouvertes ou des choses qui ne sont pas encore entièrement résolues par cette demande de tirage ?

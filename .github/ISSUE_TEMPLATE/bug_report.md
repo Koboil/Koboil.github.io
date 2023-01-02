@@ -9,28 +9,28 @@ assignees: ChakibKarmim
 
 ## Description
 
-Please describe the bug and how it can be reproduced. 
+Veuillez décrire le bug et comment il peut être reproduit.
 
-## Expected behavior
+## Comportement attendu
 
-Please describe the behavior you were expecting. 
+Veuillez décrire le comportement attendu.
 
-## Actual behavior
+## Comportement actuel
 
-Please describe the behavior you are seeing. 
+Veuillez décrire le comportement actuel.
 
-## Steps to reproduce
+## Étapes pour reproduire
 
-Please provide a detailed list of steps for reproducing the issue. 
+Veuillez fournir une liste détaillée des étapes pour reproduire le problème.
 
-## Additional context
+## Contexte supplémentaire
 
-Please provide any additional information that may be relevant to the issue. This could include: 
-- version of the project 
-- operating system 
-- relevant code snippets 
-- error messages 
+Veuillez fournir toutes les informations supplémentaires qui peuvent être pertinentes pour le problème. Cela peut inclure :
+- version du projet
+- système d'exploitation
+- extraits de code pertinents
+- messages d'erreur
 
-## Screenshots
+## Captures d'écran
 
-If applicable, please include screenshots to help explain the issue.
+Si applicable, veuillez inclure des captures d'écran pour aider à expliquer le problème.
