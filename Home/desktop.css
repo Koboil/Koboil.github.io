@@ -1,0 +1,8 @@
+body
+{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-image: url('/public/img/wp_it.jpg');
+    background-size: cover;
+}
+
