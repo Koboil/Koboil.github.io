@@ -28,6 +28,7 @@ class Header {
 			timeStyle: 'long',
 			timeZone: 'Europe/Paris',
 		}).format(new Date());
+
 		this.time.textContent = time;
 	}
 
@@ -36,18 +37,23 @@ class Header {
 			// default values
 			this.isBatteryCharging = battery.charging;
 			this.batteryLevel = `${battery.level * 100}%`;
+			this.showBattery();
 
 			// is battery charging event
 			battery.addEventListener('chargingchange', () => {
 				batteryIsCharging = battery.charging;
+				this.showBattery();
 			});
 
 			// is battery level changes event
 			battery.addEventListener('levelchange', () => {
 				this.batteryLevel = `${battery.level * 100}%`;
+				this.showBattery();
 			});
 		});
+	}
 
+	showBattery() {
 		this.battery.textContent = this.isBatteryCharging + ' ' + this.batteryLevel;
 	}
 }
