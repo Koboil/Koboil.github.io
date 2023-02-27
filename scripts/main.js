@@ -1,6 +1,6 @@
 import Header from './layouts/Header.js';
 import Window from './components/Window.js';
-import Calculator from './apps/calculator.js';
+import Calculator from './apps/Calculator.js';
 import TicTacToe from './apps/TicTacToe.js';
 
 (function () {
