@@ -1,4 +1,4 @@
-header {
+.header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -13,10 +13,10 @@ header {
 	-moz-box-shadow: 1px 18px 46px -4px rgba(0, 0, 0, 0.2);
 }
 
-.activitie {
+.header__activity {
 	margin-left: 15px;
 }
 
-.params {
+.header__params {
 	margin-right: 15px;
 }

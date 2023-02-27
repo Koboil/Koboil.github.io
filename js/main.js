@@ -1,4 +1,4 @@
-import Header from './components/Header.js';
+import Header from './layouts/Header.js';
 import Window from './components/Window.js';
 import Calculator from './apps/calculator.js';
 import TicTacToe from './apps/TicTacToe.js';
