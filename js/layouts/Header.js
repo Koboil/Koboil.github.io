@@ -5,8 +5,13 @@ class Header {
 		this.activity = this.node.querySelector('[data-header-activity]');
 		this.time = this.node.querySelector('[data-header-time]');
 		this.settings = this.node.querySelector('[data-header-settings]');
+		this.battery = this.node.querySelector('[data-header-battery]');
+
+		this.isBatteryCharging = false;
+		this.batteryLevel = '100%';
 
 		this.init();
+		this.initBattery();
 		window.setInterval(() => {
 			this.initTime();
 		}, 1000);
@@ -24,6 +29,26 @@ class Header {
 			timeZone: 'Europe/Paris',
 		}).format(new Date());
 		this.time.textContent = time;
+	}
+
+	initBattery() {
+		navigator.getBattery().then((battery) => {
+			// default values
+			this.isBatteryCharging = battery.charging;
+			this.batteryLevel = `${battery.level * 100}%`;
+
+			// is battery charging event
+			battery.addEventListener('chargingchange', () => {
+				batteryIsCharging = battery.charging;
+			});
+
+			// is battery level changes event
+			battery.addEventListener('levelchange', () => {
+				this.batteryLevel = `${battery.level * 100}%`;
+			});
+		});
+
+		this.battery.textContent = this.isBatteryCharging + ' ' + this.batteryLevel;
 	}
 }
 
