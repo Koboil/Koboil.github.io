@@ -4,7 +4,7 @@ body {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
-	background-image: url('../../images/wp_it.jpg');
+	background-image: url('../../assets/images/wp_it.jpg');
 	background-size: cover;
 	overflow: hidden;
 }
