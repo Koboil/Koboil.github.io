@@ -1,0 +1,22 @@
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 30px;
+	background-color: rgba(194, 194, 194, 0.398);
+	box-shadow: 1px 18px 46px -4px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 1px 18px 46px -4px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 1px 18px 46px -4px rgba(0, 0, 0, 0.2);
+}
+
+.activitie {
+	margin-left: 15px;
+}
+
+.params {
+	margin-right: 15px;
+}

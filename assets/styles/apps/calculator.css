@@ -1,0 +1,25 @@
+.calculator {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #000000;
+}
+
+.calculator__screen {
+	height: 50px;
+	padding: 0 20px;
+	text-align: right;
+	border: 1px solid #000000;
+}
+
+.calculator__buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	border: 1px solid #000000;
+}
+
+.calculator__buttons > button {
+	min-height: 50px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+}
