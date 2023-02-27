@@ -25,9 +25,7 @@ import TicTacToe from './apps/TicTacToe.js';
 		width: 500,
 		height: 400,
 		resetCallback: function () {
-			calculator.str = '';
-			calculator.screen.value = '';
-			calculator.screenPrev.value = '';
+			calculator.onReset();
 		},
 	});
 
@@ -43,6 +41,8 @@ import TicTacToe from './apps/TicTacToe.js';
 		node: document.querySelector("[data-window='tic-tac-toe']"),
 		width: 500,
 		height: 400,
-		resetCallback: function () {},
+		resetCallback: function () {
+			ticTacToe.onReset();
+		},
 	});
 })();
