@@ -1,4 +1,4 @@
-footer {
+.footer {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -14,7 +14,7 @@ footer {
 	-moz-box-shadow: 1px 18px 46px -4px rgba(0, 0, 0, 0.2);
 }
 
-.item {
+.footer__item {
 	padding: 5px;
 	width: 40px;
 	height: 40px;
@@ -22,11 +22,11 @@ footer {
 	margin-left: 5px;
 }
 
-.item:hover {
+.footer__item:hover {
 	transform: scale(1.2);
 	cursor: pointer;
 }
 
-.item:active {
+.footer__item:active {
 	opacity: 0.8;
 }
