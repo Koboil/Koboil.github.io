@@ -2,24 +2,18 @@ class Header {
 	constructor({ node }) {
 		this.node = node;
 
-		this.activity = this.node.querySelector('[data-header-activity]');
 		this.time = this.node.querySelector('[data-header-time]');
-		this.settings = this.node.querySelector('[data-header-settings]');
 		this.battery = this.node.querySelector('[data-header-battery]');
+		this.latency = this.node.querySelector('[data-header-latency]');
 
 		this.isBatteryCharging = false;
 		this.batteryLevel = '100%';
 
-		this.init();
 		this.initBattery();
+		this.initLatency();
 		window.setInterval(() => {
 			this.initTime();
 		}, 1000);
-	}
-
-	init() {
-		this.activity.textContent = 'TEST';
-		this.settings.textContent = 'TEST';
 	}
 
 	initTime() {
@@ -30,6 +24,15 @@ class Header {
 		}).format(new Date());
 
 		this.time.textContent = time;
+	}
+
+	initLatency() {
+		const startTime = new Date().getTime();
+		fetch('https://jsonplaceholder.typicode.com/').then(() => {
+			const endTime = new Date().getTime();
+			const latency = endTime - startTime;
+			this.latency.textContent = `${latency}/ms`;
+		});
 	}
 
 	initBattery() {
