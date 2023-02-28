@@ -21,17 +21,17 @@ Comme susmentionné, pour ce faire, nous utilisons principalement du JavaScript 
 
 ## Installation 
 
-Pour l'installation, rien de plus simple. Vous n'avez qu'à cloner le projet et à ouvrir "index.html" dans votre navigateur, nous nous sommes occupé du reste. 
+Pas besoin d'installation en tant que tel, tout ce dont vous avez besoin est d'accéder à l'URL suivante : " https://koboil.github.io/ " 
 
 ## Collaboration
 
 Ce projet se fait en équipe. En effet, nous sommes 3 personnes dessus : 
 
+- Boudouch Mustapha
+
 - Cousin Hervé
 
 - Karmim Chakib
-
-- Mokeddes Asma
 
 ## FAQs 
 

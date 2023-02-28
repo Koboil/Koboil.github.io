@@ -98,6 +98,20 @@ export default class TicTacToe {
 			this.winner = this.currentPlayer;
 			this.showWinner();
 		}
+		// check for tie
+		let boardFilled = true;
+		for (let i = 0; i < this.board.length; i++) {
+			for (let j = 0; j < this.board[i].length; j++) {
+				if (!this.board[i][j]) {
+					boardFilled = false;
+					break;
+				}
+			}
+		}
+		if (boardFilled && !this.winner) {
+			this.winner = 'Nobody !';
+			this.showWinner();
+		}
 	}
 
 	showWinner() {

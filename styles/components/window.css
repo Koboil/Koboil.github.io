@@ -4,27 +4,45 @@
 	position: absolute; /* drag and drop */
 	touch-action: none; /* drag and drop - touch screen */
 	visibility: hidden; /* prevent flashing effect on page load */
+	box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+    0 1px 3px 1px rgb(60 64 67 / 15%);
+	border-radius: 8px; /* add rounded corners */
+	background-color: #f8f8f8; /* change background color */
 }
 
 .window__header {
 	display: flex;
 	align-items: center;
-	height: 50px;
-	background-color: #ff0000;
+	height: 30px;
+	background-color: #f8f8f8; 
+	border-top-left-radius: 8px; /* add rounded corners to top corners */
+	border-top-right-radius: 8px;
 }
 
 .window__header .window__control {
-	width: 50px;
-	height: 50px;
-	border: 1px solid #000000;
+	position:relative;
+	top: 0;
+	width: 40px;
+	height: 30px;	 
+}
+
+.window__control img
+{
+	transform: scale(0.7);
+}
+
+.window__header .window__control:hover {
+	cursor: pointer;
 }
 
 .window__header .window__handle {
 	flex: 1;
-	height: 50px;
-	background-color: #00ff00;
+	height: 30px;
+	background-color: #f8f8f8; /* change background color */
 }
 
 .window__body {
 	flex: 1;
+	padding: 20px; /* add some padding */
+	background-color: #ffffff; /* change background color */
 }

@@ -5,21 +5,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Operating System</title>
 		<!-- Styles -->
+		<link rel="stylesheet" href="./styles/layouts/reset.css" />
 		<link rel="stylesheet" href="./styles/layouts/main.css" />
+		<link rel="stylesheet" href="./styles/layouts/auth.css" />
 		<link rel="stylesheet" href="./styles/layouts/header.css" />
 		<link rel="stylesheet" href="./styles/layouts/footer.css" />
 		<link rel="stylesheet" href="./styles/components/window.css" />
 		<link rel="stylesheet" href="./styles/apps/calculator.css" />
 		<link rel="stylesheet" href="./styles/apps/tic-tac-toe.css" />
+		<link rel="stylesheet" href="./styles/apps/settings.css" />
+		<link rel="stylesheet" href="./styles/apps/timer.css" />
+		<link rel="stylesheet" href="./styles/apps/countdown.css" />
 		<!-- Scripts -->
 		<script src="./scripts/main.js" type="module" defer></script>
 	</head>
 	<body>
+		<!-- AUTH -->
+		<aside class="auth" data-auth>
+			<form class="auth__login" data-auth-login>
+				<h1>Se connecter</h1>
+				<input type="text" name="username" placeholder="Nom d'utilisateur" />
+				<input type="password" name="password" placeholder="Mot de passe" />
+				<button type="submit">Se connecter</button>
+			</form>
+			<form class="auth__register" data-auth-register>
+				<h1>Créer un compte</h1>
+				<input type="text" name="username" placeholder="Nom d'utilisateur" />
+				<input type="password" name="password" placeholder="Mot de passe" />
+				<input
+					type="password"
+					name="confirm-password"
+					placeholder="Confirmer le mot de passe"
+				/>
+				<button type="submit">Créer</button>
+			</form>
+		</aside>
+
 		<!-- HEADER -->
 		<header class="header" data-header>
-			<div class="header__time" data-header-time></div>
-			<div class="header__battery" data-header-battery></div>
-			<div class="header__latency" data-header-latency></div>
+			<span class="header__logo"></span>
+			<div class="header__stats">
+				<div data-header-date></div>
+				<div data-header-time></div>
+				<div data-header-battery></div>
+				<div data-header-latency></div>
+			</div>
 		</header>
 
 		<!-- SCREEN -->
@@ -31,9 +61,9 @@
 				data-window-trigger="calculator"
 			>
 				<div class="window__header">
-					<button class="window__control" data-window-minimize>MIN</button>
-					<button class="window__control" data-window-maximize>MAX</button>
-					<button class="window__control" data-window-close>CLOSE</button>
+					<div class="window__control" data-window-minimize><img src="assets/icons/window/minimize-50.png"></div>
+					<div class="window__control" data-window-maximize><img src="assets/icons/window/maximize-50.png"></div>
+					<div class="window__control" data-window-close><img src="assets/icons/window/close-50.png"></div>
 					<div class="window__handle" data-window-handle></div>
 				</div>
 				<div class="window__body">
@@ -85,9 +115,9 @@
 				data-window-trigger="tic-tac-toe"
 			>
 				<div class="window__header">
-					<button class="window__control" data-window-minimize>MIN</button>
-					<button class="window__control" data-window-maximize>MAX</button>
-					<button class="window__control" data-window-close>CLOSE</button>
+					<div class="window__control" data-window-minimize><img src="assets/icons/window/minimize-50.png"></div>
+					<div class="window__control" data-window-maximize><img src="assets/icons/window/maximize-50.png"></div>
+					<div class="window__control" data-window-close><img src="assets/icons/window/close-50.png"></div>
 					<div class="window__handle" data-window-handle></div>
 				</div>
 				<div class="window__body">
@@ -110,30 +140,136 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- SETTINGS -->
+			<div class="window" data-window="settings" data-window-trigger="settings">
+				<div class="window__header">
+					<div class="window__control" data-window-minimize><img src="assets/icons/window/minimize-50.png"></div>
+					<div class="window__control" data-window-maximize><img src="assets/icons/window/maximize-50.png"></div>
+					<div class="window__control" data-window-close><img src="assets/icons/window/close-50.png"></div>
+					<div class="window__handle" data-window-handle></div>
+				</div>
+				<div class="window__body">
+					<div class="settings" data-settings>
+						<div class="settings__visibility">
+							<h2>Modifier visibilité</h2>
+							<label>
+								<input type="checkbox" data-settings-date />
+								<span>Date</span>
+							</label>
+							<label>
+								<input type="checkbox" data-settings-time />
+								<span>Time</span>
+							</label>
+							<label>
+								<input type="checkbox" data-settings-battery />
+								<span>Battery</span>
+							</label>
+							<label>
+								<input type="checkbox" data-settings-latency />
+								<span>Latency</span>
+							</label>
+						</div>
+						<form class="settings__credentials" data-settings-credentials>
+							<h2>Modifier vos identifiants</h2>
+							<input
+								type="text"
+								name="username"
+								placeholder="Nom d'utilisateur"
+							/>
+							<input
+								type="password"
+								name="password"
+								placeholder="Mot de passe"
+							/>
+							<input
+								type="password"
+								name="confirm-password"
+								placeholder="Confirmer le mot de passe"
+							/>
+							<button type="submit">Modifier</button>
+						</form>
+						<form class="settings__server" data-settings-server>
+							<h2>Configurer latence</h2>
+							<input type="text" name="server" placeholder="Serveur" />
+							<input
+								type="number"
+								name="duration"
+								placeholder="Délai de rafraichissement"
+								min="0"
+							/>
+							<button type="submit">Modifier</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- Timer -->
+			<div class="window" data-window="timer" data-window-trigger="timer">
+				<div class="window__header">
+					<div class="window__control" data-window-minimize><img src="assets/icons/window/minimize-50.png"></div>
+					<div class="window__control" data-window-maximize><img src="assets/icons/window/maximize-50.png"></div>
+					<div class="window__control" data-window-close><img src="assets/icons/window/close-50.png"></div>
+					<div class="window__handle" data-window-handle></div>
+				</div>
+				<div class="window__body">
+					<div class="timer" data-timer>
+						<h1  data-timer-display>00:00</h1>
+						<div class="timer__controll">
+							<button data-timer-start>Start</button>
+							<button data-timer-pause>Pause</button>
+							<button data-timer-reset>Reset</button>
+						</div>
+			
+					</div>
+				</div>
+			</div>
+
+			<!-- Countdown -->
+			<div
+				class="window"
+				data-window="countdown"
+				data-window-trigger="countdown"
+			>
+				<div class="window__header">
+					<div class="window__control" data-window-minimize><img src="assets/icons/window/minimize-50.png"></div>
+					<div class="window__control" data-window-maximize><img src="assets/icons/window/maximize-50.png"></div>
+					<div class="window__control" data-window-close><img src="assets/icons/window/close-50.png"></div>
+					<div class="window__handle" data-window-handle></div>
+				</div>
+				<div class="window__body">
+					<div class="countdown" data-countdown>
+						<h1 data-countdown-display></h1>
+						<input type="number" placeholder="0" data-countdown-input />
+						<div class="countdown__control">
+							<button data-countdown-start>Start</button>
+							<button data-countdown-pause>Pause</button>
+							<button data-countdown-reset>Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</main>
 
 		<!-- FOOTER -->
 		<footer class="footer">
 			<div class="footer__item" id="calculator">
-				<img
-					src="./assets/icons/calculator/calculator-40.png"
-					alt="calculator"
-				/>
+				<img src="./assets/icons/calculator/calculator-40.png" />
 			</div>
-			<div class="footer__item">
-				<img src="./assets/icons/folder/folder-40.png" alt="calculator" />
+			<div class="footer__item" id="countdown">
+				<img src="./assets/icons/minut/minut-40.png" />
 			</div>
-			<div class="footer__item">
-				<img src="./assets/icons/mail/mail-40.png" alt="calculator" />
+			<div class="footer__item" id="timer">
+				<img src="./assets/icons/chrono/chrono-40.png" />
 			</div>
-			<div class="footer__item">
-				<img src="./assets/icons/settings/settings-40.png" alt="calculator" />
+			<div class="footer__item" id="settings">
+				<img src="./assets/icons/settings/settings-40.png" />
 			</div>
 			<div class="footer__item" id="tic-tac-toe">
-				<img src="./assets/icons/game/game-40.png" alt="calculator" />
+				<img src="./assets/icons/game/game-40.png" />
 			</div>
 			<div class="footer__item">
-				<img src="./assets/icons/trash/trash-40.png" alt="calculator" />
+				<img src="./assets/icons/trash/trash-40.png" />
 			</div>
 		</footer>
 	</body>

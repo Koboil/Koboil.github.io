@@ -158,7 +158,10 @@ export default class Window {
 		// move window
 		this.setPosition({
 			x: e.clientX - this.offset.x,
-			y: e.clientY - this.offset.y,
+			y:
+				e.clientY - this.offset.y <= HEADER_HEIGHT
+					? HEADER_HEIGHT
+					: e.clientY - this.offset.y,
 		});
 	}
 

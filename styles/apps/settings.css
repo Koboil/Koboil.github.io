@@ -1,0 +1,32 @@
+.settings {
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	gap:5px;
+	font-family: 'Ubuntu' , sans-serif;
+}
+
+.settings__visibility {
+	display: flex;
+	flex-direction: column;
+}
+
+.settings__credentials {
+	display: flex;
+	flex-direction: column;
+}
+
+.settings__server {
+	display: flex;
+	flex-direction: column;
+}
+
+.settings input,button[type='submit']
+{
+	background-color: #f8f8f8;
+	border-radius: 10px;
+	padding: 5px;
+	margin: 5px;
+	box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+    0 1px 3px 1px rgb(60 64 67 / 15%);
+}
